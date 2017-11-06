@@ -1,16 +1,5 @@
 #include "gif-decoder.h"
 
-#include <stdio.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <string.h>
-#include <limits.h> // required by strtonum
-#include <bsd/stdlib.h> // strtonum
-#include <errno.h>
-#include <math.h>
-
 #define DEFAULT_BUFFER_SIZE 512
 
 
@@ -28,7 +17,7 @@ void read_file_contents(char *path, char **out_file_contents) {
 	int fd = open(path, O_RDONLY);
 	if(fd < 0) {
 		fprintf(stderr, "Error opening the file! (%s)\n", strerror(errno));
-		return;
+		exit(-1);
 	}
 
 	char buf[DEFAULT_BUFFER_SIZE];
@@ -90,7 +79,12 @@ void extract_lsd(char *hex_contents) {
 
 	strncpy(tmp, lsd_block + 12, 2);
 	tmp[2] = '\0';
-	printf("%s\n", tmp);
 	int packed_field = (int)strtol(tmp, NULL, 16);
 	printf("%d\n", packed_field);
+
+	// TODO: finish unpacking bits
+}
+
+void extract_color_table(char *hex_contents) {
+	
 }

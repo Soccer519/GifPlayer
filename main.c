@@ -5,8 +5,8 @@
 int main(void) {
 	char *hex_contents = NULL, *ascii_contents = NULL;
 
-	read_file_contents("/home/mark/Downloads/source.gif", &ascii_contents);
-	read_file_contents("/home/mark/Downloads/hex_source.txt", &hex_contents);
+	read_file_contents("res/source.gif", &ascii_contents);
+	read_file_contents("res/hex_source.txt", &hex_contents);
 	extract_header(ascii_contents, NULL, NULL);
 	extract_lsd(hex_contents);
 
